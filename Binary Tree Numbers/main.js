@@ -1,11 +1,10 @@
 let evenid = [
-    ["L", 2],
     ["R", 2]
 ];
 
 // This assumes even side
 
-function evalR(ε, v = 2, n = 0) {
+function evalREven(ε, v = 2, n = 0) {
 
     /**
      * @param ε is the transformation x ∈ ℕ
@@ -17,7 +16,7 @@ function evalR(ε, v = 2, n = 0) {
 
 }
 
-function evalL (ε, v = 1, n = 0) {
+function evalLEven(ε, v = 1, n = 0) {
 
     /**
      * @param ε is the transformation x ∈ ℕ
@@ -33,11 +32,11 @@ function evalL (ε, v = 1, n = 0) {
 }
 
 
-function evalID(ζ) {
+function evalIDEven(ζ) {
 
     /**
-     * function can take any even number x ∈ L and translate it to x ∈ ℕ
-     * @param  ζ the number that is evalutated, is a nx2 matrix
+     * function can take any even number x ∈ Z and translate it to x ∈ ℕ
+     * @param  ζ the number x ∈ Z that is evalutated, is an nx2 matrix
     */ 
 
 
@@ -45,13 +44,36 @@ function evalID(ζ) {
 
     for (var i = 0; i < ζ.length; i++) {
         if (ζ[i][0] === "R") {
-            value = evalR(ζ, value, i);
+            value = evalREven(ζ, value, i);
         } else if (ζ[i][0] === "L") {
-            value = evalL(ζ, value, i);
+            value = evalLEven(ζ, value, i);
         }
     }
 
     return value;
 }
 
-console.log(evalID(evenid))
+function evalIDOdd(ζ) {
+
+    /**
+     * function can take any even number x ∈ Z and translate it to x ∈ ℕ
+     * @param  ζ the number x ∈ Z that is evalutated, is an nx2 matrix
+    */ 
+
+
+    var value = 1;
+
+    for (var i = 0; i < ζ.length; i++) {
+        if (ζ[i][0] === "R") {
+            value = evalLEven(ζ, value, i) + 1;
+        } else if (ζ[i][0] === "L") {
+            value = evalREven(ζ, value, i) + 1;
+        }
+    }
+
+    return value;
+}
+
+
+
+console.log(evalIDOdd(evenid));
