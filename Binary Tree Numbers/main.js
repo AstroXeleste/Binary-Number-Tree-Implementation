@@ -1,41 +1,53 @@
 let evenid = [
+    ["L", 2],
     ["R", 2]
 ];
 
 // This assumes even side
 
-function evalR(ε, n, v) {
-    if (ε === 1) {
-        throw "cant use 1 right now, WIP";
+function evalR(ε, v = 2, n = 0) {
+
+    /**
+     * @param ε is the transformation x ∈ ℕ
+     * @param n is the iteration set default to 0 for initial tests
+     * @param v is the value set default to 2
+     */
+    
+    return (2**ε[n][1])*v;
+
+}
+
+function evalL (ε, v = 1, n = 0) {
+
+    /**
+     * @param ε is the transformation x ∈ ℕ
+     * @param n is the iteration set default to 0 for initial tests
+     * @param v is the value set default to 1
+     */
+
+    if (v === 1) {
+        return 2*(2**ε[n][1] - 1);
     } else {
-        return (2**n[v][1])*ε;
+        return 2*(2**ε[n][1] - 1) + evalR(ε, v, n);
     }
 }
 
-function evalL (ε, n, v) {
-    if (ε === 1) {
-        return 2*(2**n[v][1] - 1);
-    } else {
-        return 2*(2**n[v][1] - 1) + evalR(ε, n, v);
-    }
-}
 
-
-function evalID(ε) {
+function evalID(ζ) {
 
     /**
      * function can take any even number x ∈ L and translate it to x ∈ ℕ
-     * @param ε, the even number ID in matrix form
+     * @param  ζ the number that is evalutated, is a nx2 matrix
     */ 
 
 
     var value = 1;
 
-    for (var i = 0; i < ε.length; i++) {
-        if (ε[i][0] === "R") {
-            value = evalR(value, evenid, i);
-        } else if (ε[i][0] === "L") {
-            value = evalL(value, evenid, i);
+    for (var i = 0; i < ζ.length; i++) {
+        if (ζ[i][0] === "R") {
+            value = evalR(ζ, value, i);
+        } else if (ζ[i][0] === "L") {
+            value = evalL(ζ, value, i);
         }
     }
 
