@@ -74,6 +74,6 @@ function evalIDOdd(ζ) {
     return value;
 }
 
+const evalID = (ζ) => ζ[0][0] === "L" ? evalIDEven(ζ) : evalIDOdd(ζ);
 
-
-console.log(evalIDOdd(evenid));
+export {evalIDEven, evalIDOdd, evalID}
