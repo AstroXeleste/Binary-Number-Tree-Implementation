@@ -10,10 +10,11 @@ class Node {
         this.ε = combineConsecutiveElements(ε);
         this.r = null;
         this.l = null;
+        this.v = evalID(ε)
     }
 
     getID = () => this.ε
-    getValue = () => evalID(this.ε)
+    getValue = () => this.v
     getRightNode = () => this.r === null ? console.error("No node generated, run <<class name>>.setRightNode") : this.r
     getLeftNode = () => this.l === null ? console.error("No node generated, run <<class name>>.setRightNode") : this.l
 
@@ -32,5 +33,7 @@ class Node {
     }
 
 }
+
+var goofy = new Node()
 
 export {Node}

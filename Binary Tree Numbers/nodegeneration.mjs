@@ -16,3 +16,5 @@ function generateTree (depth, root = new Node([["L", 0], ["R", 0]])) { // Use th
 
     return rootNode;
 }
+
+tree - generateTree(s)
