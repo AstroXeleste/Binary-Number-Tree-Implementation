@@ -6,7 +6,7 @@ var id = [
 ]
 
 class Node {
-    constructor (ε) {
+    constructor (ε = [["L", 0], ["R", 0]]) {
         this.ε = combineConsecutiveElements(ε);
         this.r = null;
         this.l = null;
@@ -19,23 +19,18 @@ class Node {
 
     setRightNode (η = this.ε) {
         η.push(["R", 1])
-        η = combineConsecutiveElements(η)
         this.r = new Node(η)
+        this.r.ε = combineConsecutiveElements(this.r.ε)
+        η.pop()
     }
 
     setLeftNode (η = this.ε) {
         η.push(["L", 1])
-        η = combineConsecutiveElements(η)
         this.l = new Node(η)
+        this.l.ε = combineConsecutiveElements(this.l.ε)
+        η.pop()
     }
 
 }
-
-var goofy = new Node(id)
-
-goofy.setLeftNode()
-goofy.setRightNode()
-
-console.log(goofy.getRightNode().getValue())
 
 export {Node}
