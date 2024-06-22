@@ -17,4 +17,16 @@ function generateTree (depth, root = new Node([["L", 0], ["R", 0]])) { // Use th
     return rootNode;
 }
 
-tree - generateTree(s)
+var tree = generateTree(5)
+
+function dumpTree (root) {
+    if (root) {
+        dumpTree(root.l)
+        dumpTree(root.r)
+        console.log(root.ε)
+    }
+}
+
+dumpTree(tree)
+
+export { generateTree }

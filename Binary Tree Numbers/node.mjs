@@ -31,7 +31,6 @@ class Node {
         this.l.ε = combineConsecutiveElements(this.l.ε)
         η.pop()
     }
-
 }
 
 var goofy = new Node()
